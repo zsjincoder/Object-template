@@ -2,11 +2,10 @@
 import login from '@/views/login';
 // 首页
 import index from '@/views/index';
-/**
- * 基础菜单
- */
-// 商品管理
-import Goods from '@/views/goods/Goods';
+/************基础信息菜单********/
+// 用户管理
+import UserManagement from '@/views/userManagement/UserManagement';
+
 
 
 // 导出路由
@@ -27,21 +26,15 @@ export default [{
     requireAuth: false
   }
 }, {
-  path: '/index',
-  name: '基础管理',
+  path: '/baseData',
+  name: '基础数据管理',
   component: index,
-  iconCls: 'el-icon-tickets',
+  icon: 'el-icon-s-grid',
   children: [{
     path: '/goods/Goods',
-    name: '商品管理',
-    component: Goods,
-    meta: {
-      requireAuth: true
-    }
-  },{
-    path: '/goods/Goods1',
-    name: '商品管理2',
-    component: Goods,
+    name: '用户管理',
+    icon:'el-icon-s-custom',
+    component: UserManagement,
     meta: {
       requireAuth: true
     }

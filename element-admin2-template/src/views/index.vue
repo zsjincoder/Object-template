@@ -32,9 +32,9 @@
 </template>
 <script>
 // 导入组件
-import navcon from '../components/navcon.vue'
-import leftnav from '../components/leftnav.vue'
-import BreadCrumbs from "../components/BreadCrumbs";
+import navcon from '../components/layout/navcon.vue'
+import leftnav from '../components/layout/leftnav.vue'
+import BreadCrumbs from "../components/layout/BreadCrumbs";
 export default {
   name: 'index',
   data() {

@@ -11,7 +11,9 @@ import router from "./router";
 import store from './vuex/store';
 // 引入icon
 import './assets/icon/iconfont.css'
-//
+//公共组件
+import common from '@/components'
+Vue.use(common)
 
 // 引入echarts
 import echarts from 'echarts'

@@ -1,3 +1,4 @@
+import routers from "@/router/routers";
 
 /**
  * 时间戳
@@ -97,30 +98,38 @@ export {
  * @param routers
  * @return {*[]}
  */
+/*******判断是否找到该值********/
 export const routedBreadcrumbs = (path, routers) =>{
-  let nodes =[]
-  treeNodeChain(path, routers ,nodes)
-  return nodes
-}
-
-/**
- * 返回树形结构某个节点链
- * @param value
- * @param treeList
- * @param nodes
- */
-export const treeNodeChain = (value, treeList, nodes) => {
-  for(let i = 0; i < treeList.length; i++){
-    let treeItem = JSON.parse(JSON.stringify(treeList[i]))
-    delete treeItem.menus
-    nodes.push(treeItem)
-    if (value === `/${treeList[i].url}`){
-      break;
-    }
-    if(treeList[i].hasOwnProperty('menus')){
-      treeNodeChain(value, treeList[i].menus, nodes)
-    }else {
-      nodes.pop()
+  let children = []
+  /**
+   * 返回树形结构某个节点链
+   * @param value
+   * @param treeList
+   * @param nodes
+   */
+  const treeNodeChain = (value, treeList, nodes) => {
+    for(let i = 0; i < treeList.length; i++){
+      let nodesTree = JSON.parse(JSON.stringify(nodes))
+      let treeItem = JSON.parse(JSON.stringify(treeList[i]))
+      delete treeItem.children
+      nodesTree.push(treeItem)
+      if (value === `${treeList[i].path}`){
+        children = nodesTree
+        return nodesTree
+      }
+      if(treeList[i].hasOwnProperty('children')){
+        treeNodeChain(value, treeList[i].children, nodesTree)
+      }else {
+        nodesTree.pop()
+      }
     }
   }
+  treeNodeChain(path, routers, [])
+  return children
+}
+
+// 返回路由菜单
+export const returnToRoutingMenu = () =>{
+  let menu = routers.filter(item => !item.hidden)
+  return menu
 }

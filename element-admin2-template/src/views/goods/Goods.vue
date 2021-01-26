@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import Pagination from '../../components/Pagination'
+import Pagination from '../../components/layout/Pagination'
 export default {
   data() {
     return {
